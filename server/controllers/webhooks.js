@@ -36,7 +36,7 @@ export const clerkWebHook=async (req,res)=>{
                     image:data.image_url,
                     resume: ''
                 }
-
+                console.log("User Data for Creation:", userData)
                 await User.create(userData);
                 res.json({})
                 break;
@@ -49,14 +49,14 @@ export const clerkWebHook=async (req,res)=>{
                     name:data.first_name+" "+data.last_name,
                     image:data.image_url
                 }
-
+                console.log("User Data for Update:", userData);
                 await User.findByIdAndUpdate(data.id,userData)
                 res.json({})
                 break;
 
             }
             case 'user.deleted':{
-                
+                console.log("User ID for Deletion:", data.id);
                 await User.findByIdAndDelete(data.id)
                 res.json({})
                 break;
