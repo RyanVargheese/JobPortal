@@ -14,7 +14,12 @@ await connectDB()
 
 //Middlewares
 app.use(cors())
-app.use(express.json())
+app.use(express.json({
+  // This 'verify' function saves the raw request body to req.rawBody
+  verify: (req, res, buf) => {
+    req.rawBody = buf.toString(); // Store the raw buffer as a string
+  },
+}));
 
 //Routes
 app.get('/',(req,res)=>res.send("API Working"))

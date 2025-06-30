@@ -7,19 +7,20 @@ export const clerkWebHook=async (req,res)=>{
     try {
 
         console.log("--- Webhook Request Received ---");
-        console.log("Request Headers:", req.headers); // <<<--- ADD THIS LINE
+        console.log("Request Headers:", req.headers);
         console.log("Request Body:", req.body);
-        
+        console.log("Raw Body (for verification):", req.rawBody);
+
         //Create Svik instance with clerk webhook Secret
         const whook=new Webhook(process.env.CLERK_WEBHOOK_SECRET)
 
         //Verifying Headers
 
-        await whook.verify(JSON.stringify(req.body),{
-            "svix-id":req.headers["svix-id"],
-            "svik-timestamp":req.headers["svix-timestamp"],
-            "svik-signature":req.headers["svix-signature"]
-        })
+         await whook.verify(req.rawBody, { // Use req.rawBody instead of JSON.stringify(req.body)
+            "svix-id": req.headers["svix-id"],
+            "svix-timestamp": req.headers["svix-timestamp"],
+            "svix-signature": req.headers["svix-signature"]
+        });
 
         //Gettingdata from request body
         const {data,body}=req.body
