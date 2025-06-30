@@ -6,6 +6,10 @@ import User from "../models/User.js";
 export const clerkWebHook=async (req,res)=>{
     try {
 
+        console.log("--- Webhook Request Received ---");
+        console.log("Request Headers:", req.headers); // <<<--- ADD THIS LINE
+        console.log("Request Body:", req.body);
+        
         //Create Svik instance with clerk webhook Secret
         const whook=new Webhook(process.env.CLERK_WEBHOOK_SECRET)
 
