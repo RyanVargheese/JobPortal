@@ -11,6 +11,8 @@ export const clerkWebHook=async (req,res)=>{
         console.log("Request Body:", req.body);
         console.log("Raw Body (for verification):", req.rawBody);
 
+        console.log("CLERK_WEBHOOK_SECRET length:", process.env.CLERK_WEBHOOK_SECRET ? process.env.CLERK_WEBHOOK_SECRET.length : "NOT SET/UNDEFINED");
+
         //Create Svik instance with clerk webhook Secret
         const whook=new Webhook(process.env.CLERK_WEBHOOK_SECRET)
 
