@@ -11,14 +11,12 @@ export const clerkWebHook=async (req,res)=>{
         console.log("Request Body:", req.body);
         console.log("Raw Body (for verification):", req.rawBody);
 
-        console.log("CLERK_WEBHOOK_SECRET length:", process.env.CLERK_WEBHOOK_SECRET ? process.env.CLERK_WEBHOOK_SECRET.length : "NOT SET/UNDEFINED");
-
         //Create Svik instance with clerk webhook Secret
         const whook=new Webhook(process.env.CLERK_WEBHOOK_SECRET)
 
         //Verifying Headers
 
-         await whook.verify(req.rawBody, { // Use req.rawBody instead of JSON.stringify(req.body)
+         await whook.verify(req.rawBody, { //req.rawBody instead of JSON.stringify(req.body)
             "svix-id": req.headers["svix-id"],
             "svix-timestamp": req.headers["svix-timestamp"],
             "svix-signature": req.headers["svix-signature"]
