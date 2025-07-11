@@ -3,11 +3,14 @@ import { createContext } from 'react'
 import { jobsData } from '../assets/assets';
 import { toast } from 'react-toastify';
 import axios from 'axios'
+import { useAuth, useUser } from '@clerk/clerk-react';
 
 export const AppContext=createContext();
 const AppContextProvider=({children})=>{
 
     const backendUrl=import.meta.env.VITE_BACKEND_URL
+    const {user}=useUser()
+    const {getToken}=useAuth()
 
     const [searchFilter,setSearchFilter]=useState({
         title:'',location:''
@@ -20,8 +23,24 @@ const AppContextProvider=({children})=>{
     const [companyToken,setCompanyToken]=useState(null)
     const [companyData,setCompanyData]=useState(null)
 
+    const [userData,setUserData]=useState(null);
+    const [userApplications,setUserApplications]=useState([]);
+
     const fetchJobs=async ()=>{
-        setJobs(jobsData);
+        try {
+            const {data}=await axios.get(backendUrl+'/api/jobs')
+
+            if(data.success){
+                setJobs(data.jobs)
+                console.log(data.jobs);
+            }
+            else{
+                toast.error(data.message)
+            }
+
+        } catch (error) {
+            toast.error(error.message)
+        }
     }
 
     // Function to fetch company data
@@ -42,6 +61,16 @@ const AppContextProvider=({children})=>{
             toast.error(error.message)
         }
     } 
+
+    //Function to fetch user data
+    const fetchUserData= async ()=>{
+         try {
+            
+         } catch (error) {
+            
+         }
+    }
+
 
     useEffect(()=>{
         fetchJobs()

@@ -7,6 +7,7 @@ import { assets } from '../assets/assets';
 import kConvert from 'k-convert';
 import moment from 'moment';
 import JobCard from '../components/JobCard';
+import axios from 'axios';
 
 
 const ApplyJobs = () => {
@@ -15,21 +16,31 @@ const ApplyJobs = () => {
 
     const [jobData, setJobData] = useState(null);
 
-    const { jobs } = useContext(AppContext);
+    const { jobs,backendUrl } = useContext(AppContext);
 
     const fetchJob = async () => {
-        const data = jobs.filter((job) => { return job._id === id })
-        if (data.length !== 0) {
-            setJobData(data[0]);
-            console.log(data[0]);
+
+        try {
+            const {data}=await axios.get(backendUrl+`/api/jobs/${id}`)
+
+        if(data.success){
+            setJobData(data.job)
         }
+        else{
+            toast.error(data.message)
+        }
+
+        } catch (error) {
+            toast.error(error.message)
+        }
+        
+        
     }
 
     useEffect(() => {
-        if (jobs.length > 0)
             fetchJob();
 
-    }, [id, jobs])
+    }, [id])
 
 
     return jobData ? (
