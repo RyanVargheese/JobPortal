@@ -28,19 +28,18 @@ export const getUserData=async (req,res)=>{
 export const ApplyForAJob=async (req,res)=>{
 
     const {jobId} =req.body
-
     const userId=req.auth.userId
 
     try {
         const isAlreadyApplied=await JobApplication.find({jobId,userId})
 
         if(isAlreadyApplied.length >0)
-            res.json({success:false,message:'Already Applied'})
+            return res.json({success:false,message:'Already Applied'})
 
         const jobData=await Job.findById(jobId)
 
-        if(!job)
-            res.json({success:false,message:'Job Not Found'})
+        if(!jobData)
+            return res.json({success:false,message:'Job Not Found'})
 
         await JobApplication.create({
              companyId:jobData.companyId,
@@ -49,10 +48,10 @@ export const ApplyForAJob=async (req,res)=>{
              date:Date.now()
         })
 
-        res.json({success:true,message:'Applied Sucessfully'})
+        return res.json({success:true,message:'Applied Sucessfully'})
 
     } catch (error) {
-        res.json({success:false,message:error.message})
+        return res.json({success:false,message:error.message})
     }
 
 }
@@ -67,14 +66,14 @@ export const getUserJobApplications=async (req,res)=>{
         const application=await JobApplication.find({userId}).populate('companyId','name email image')
         .populate('jobId','title location description category level salary').exec()
 
-        if(application){
-            res.json({success:false,message:'No job Application'})
+        if(!application){
+            return res.json({success:false,message:'No job Application'})
         }
 
         return res.json({success:true,application})
 
     } catch (error) {
-        res.json({success:false,message:error.message})
+        return res.json({success:false,message:error.message})
     }
 
 }

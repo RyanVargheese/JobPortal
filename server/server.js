@@ -32,7 +32,25 @@ app.use(express.json({
     req.rawBody = buf.toString(); // Store the raw buffer as a string
   },
 }));
+
 app.use(clerkMiddleware())
+/*
+The middleware function returned by clerkMiddleware() is Responsible for:
+
+Authenticating Incoming Requests: It inspects incoming HTTP requests for authentication information (e.g., session cookies, authorization headers with JWTs) that Clerk uses.
+
+Verifying Session/Token: It validates the provided authentication credentials against Clerk's backend to ensure they are legitimate and unexpired.
+
+Populating req Object: If a request is successfully authenticated, it typically populates the req object with Clerk-specific authentication data, such as:
+
+req.auth: An object containing authentication details like userId, sessionId, orgId, etc.
+
+req.user: An object containing the full user profile data from Clerk.
+
+req.organization: An object containing the organization data if the user is authenticated within an organization.
+
+Handling Unauthenticated Requests: If a request is not authenticated or the authentication fails, clerkMiddleware() might respond with an HTTP error (e.g., 401 Unauthorized) or pass the request through, but without populating the req object, allowing subsequent route handlers to check for authentication status.
+ */
 
 //Routes
 app.get('/',(req,res)=>res.send("API Working"))

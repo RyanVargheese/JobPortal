@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
 import Loading from '../components/Loading';
 import NavBar from '../components/NavBar';
@@ -8,15 +8,21 @@ import kConvert from 'k-convert';
 import moment from 'moment';
 import JobCard from '../components/JobCard';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useAuth } from '@clerk/clerk-react';
 
 
 const ApplyJobs = () => {
 
     const { id } = useParams();
 
+    const navigate=useNavigate();
+
+    const {getToken} =useAuth();
+
     const [jobData, setJobData] = useState(null);
 
-    const { jobs,backendUrl } = useContext(AppContext);
+    const { jobs,backendUrl,userData,userApplications } = useContext(AppContext);
 
     const fetchJob = async () => {
 
@@ -35,6 +41,37 @@ const ApplyJobs = () => {
         }
         
         
+    }
+
+    const applyHandler=async ()=>{
+        try {
+            if(!userData){
+                return toast.error('Login to apply for jobs')
+            }
+
+            if(!userData.resume){
+                navigate('/applications')
+                return toast.error('Upload Resume to Apply')
+            }
+
+            
+            const token=await getToken();
+
+            const {data}=await axios.post(backendUrl+'/api/users/apply',{jobId:jobData._id},{headers:{
+                Authorization:`Bearer ${token}`
+            }})
+
+            if(data.success){
+                toast.success(data.message)
+            }
+            else{
+                toast.error(data.message)
+            }
+            
+
+        } catch (error) {
+            toast.error(error.message)
+        }
     }
 
     useEffect(() => {
@@ -77,7 +114,7 @@ const ApplyJobs = () => {
                             </div>
                         </div>
                         <div className='flex flex-col justify-center text-end text-sm max-md:mx-auto max-md:text-center'>
-                            <button className='bg-blue-600  p-2.5 px-10 text-white rounded' >Apply Now</button>
+                            <button onClick={applyHandler} className='bg-blue-600  p-2.5 px-10 text-white rounded' >Apply Now</button>
                             <p className='mt-1 text-gray-600' >Posted {moment(jobData.data).fromNow()}</p>
                         </div>
 
@@ -87,7 +124,7 @@ const ApplyJobs = () => {
                         <div className='w-full lg:w-2/3' >
                             <h2 className='font-bold text-2xl mb-4' >Job Description</h2>
                             <div className='rich-text' dangerouslySetInnerHTML={{__html:jobData.description}}></div>
-                            <button className='bg-blue-600  p-2.5 px-10 text-white rounded mt-10' >Apply Now</button>
+                            <button onClick={applyHandler} className='bg-blue-600  p-2.5 px-10 text-white rounded mt-10' >Apply Now</button>
                         </div>
                         {/* Right section */}
                         <div className='w-full lg:w-1/3 mt-8  lg:mt-0 lg:ml-8 space-y-5' >
