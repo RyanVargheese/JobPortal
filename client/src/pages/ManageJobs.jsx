@@ -60,7 +60,10 @@ const ManageJobs=()=>{
         }
     },[companyToken])
 
-    return jobs ? jobs.length === 0 ? (<div></div>):(
+    return jobs ? jobs.length === 0 ? (
+    <div className='flex items-center justify-center h-[70vh]'>
+        <p className='text-xl sm:text-2xl' >No jobs Available or Posted</p>
+    </div>):(
 
     
         <div className='container p-4 max-5-5xl' >
