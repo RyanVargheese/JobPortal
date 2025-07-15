@@ -6,12 +6,12 @@ import AppDownLoads from '../components/AppDownLoads'
 
 const Home=()=>{
     return (
-        <>
-        <NavBar />
-        <Hero />
-        <JobListing />
-        <AppDownLoads />
-        </>
+        <div className="min-w-[400px]">
+            <NavBar />
+            <Hero />
+            <JobListing />
+            <AppDownLoads />
+        </div>
     )
 }
 

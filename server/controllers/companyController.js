@@ -99,6 +99,7 @@ export const postJob = async (req, res) => {
     const companyId=req.company._id
 
     try{
+        // Create a new Job instance
         const newJob=new Job({
             title,
             description,
@@ -109,7 +110,7 @@ export const postJob = async (req, res) => {
             level,
             category
         })
-
+        // inserts the new job document into the MongoDB collection
         await newJob.save()
 
         res.json({success:true,newJob})

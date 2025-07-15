@@ -24,18 +24,21 @@ const RecruiterLogin = () => {
 
          if(state==='Sign Up' && !isTextDataSubmitted){
             return setIstextDataSubmitted(true)
+            // prevent further execution and set 'isTextDataSubmitted' to true
          }
 
          try {
             
             if(state=== 'Login'){
 
+                // Send 'email' and 'password' from the form fields
                 const {data}=await axios.post(backendUrl+'/api/company/login',{email,password})
 
                 if(data.success){
                     setCompanyData(data.company);
                     setCompanyToken(data.token);
 
+                    // Store the company token in local storage for persistence
                     localStorage.setItem('companyToken',data.token);
                     setShowRecruiterLogin(false)
                     navigate('/dashboard')
@@ -46,13 +49,14 @@ const RecruiterLogin = () => {
 
             }
             else{
-                
+                // Create a FormData object to handle form data, especially if it includes a file (like 'image')
                 const formData=new FormData()
                 formData.append('name',name)
                 formData.append('password',password)
                 formData.append('email',email)
                 formData.append('image',image)
 
+                // Send the FormData object (axios will correctly set content-type for FormData)
                 const {data} = await axios.post(backendUrl+'/api/company/register',formData) 
 
                 if(data.success){   
@@ -77,8 +81,10 @@ const RecruiterLogin = () => {
     }
 
     useEffect(()=>{
+        //This typically prevents scrolling on the entire page, often used when a modal or overlay is open.
         document.body.style.overflow='hidden'
 
+        // 'unset' removes the previously applied 'hidden' style
         return ()=>{
             document.body.style.overflow='unset'
         }

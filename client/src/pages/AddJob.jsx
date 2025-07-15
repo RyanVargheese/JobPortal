@@ -19,16 +19,23 @@ const AddJob=()=>{
     const {backendUrl,companyToken}=useContext(AppContext)
 
     const onSubmitHandler= async (e)=>{
+        //Preventing Default form behaviour
         e.preventDefault();
 
         try {
-            
+            //Extracting rich text(HTML) from Quill editor
             const description=quillRef.current.root.innerHTML; 
 
+             // Making an asynchronous POST request to the backend API to post a new job
+             //The job data to be sent in the request body,will be available in req.body
+            
             const {data}= await axios.post(backendUrl+'/api/company/post-job',{title,description,location,category,level,salary},{headers:{token:companyToken}})
             
             if(data.success){
+                // Display a success notification to the user
                 toast.success(data.message)
+
+                //Making it back to normal
                 setTitle('');
                 setSalary(0);
                 quillRef.current.root.innerHTML="";
@@ -44,8 +51,10 @@ const AddJob=()=>{
 
     }
 
+    // It runs side effects after the component renders
     useEffect(()=>{
         //Initiating quill only once
+        //Quill attaching it to the DOM element referenced by `editorRef.current`
         if(!quillRef.current && editorRef.current){
             quillRef.current=new Quill(editorRef.current,{theme:'snow'})
         }

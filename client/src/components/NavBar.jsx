@@ -24,7 +24,7 @@ const NavBar=()=>{
                         <p className='max-sm:hidden' >Hi, {user.firstName+" "+user.lastName}</p>
                         <UserButton />
                     </div>:<div className='flex gap-4 max-sm:text-xs'>
-                <button onClick={(e)=>{setShowRecruiterLogin(true)}} className='text-gray-400'>Register Login</button>
+                <button onClick={(e)=>{setShowRecruiterLogin(true)}} className='text-gray-400 cursor-pointer'>Recruiter Login</button>
                 <button onClick={(e)=>{openSignIn()}} className='text-white bg-blue-400 px-6 rounded-full sm:px-9 py-2 cursor-pointer'>Login</button>
             </div>
                 }
