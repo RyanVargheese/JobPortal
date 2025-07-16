@@ -4,7 +4,7 @@ import { assets, JobCategories, JobLocations} from '../assets/assets';
 import JobCard from './JobCard';
 
 const JobListing=()=>{
-
+    //Insisted
     const {searchFilter,isSearched,setSearchFilter,jobs}=useContext(AppContext);
     const [showFilter,setShowFilter]=useState(false);
     const [currentPage,setCurrentPage]=useState(1);
