@@ -43,6 +43,7 @@ const ManageJobs=()=>{
 
             if(data.success){
                 toast.success(data.message)
+                //for modifying the data then and there
                 fetchCompanyJobs()
             }
             else{

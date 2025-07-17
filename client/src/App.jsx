@@ -11,7 +11,7 @@ import ManageJobs from './pages/ManageJobs'
 import ViewApplications from './pages/ViewApplications'
 import 'quill/dist/quill.snow.css'
 
- import { ToastContainer, toast } from 'react-toastify';
+ import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -19,6 +19,7 @@ function App() {
 
   return (
     <>
+      {/* Acts like Toggle */}
       {showRecruiterLogin && <RecruiterLogin />}
       <ToastContainer />
       <Routes>
@@ -27,10 +28,9 @@ function App() {
         <Route path='/applications' element={<Applications/>} />
         <Route path='/dashboard' element={ <DashBoard/> }>
           {companyToken ? <>
-          
             <Route path='add-job' element={<AddJob/>} />
-          <Route path='manage-jobs' element={<ManageJobs/>} />
-          <Route path='view-applications' element={<ViewApplications/>} />
+            <Route path='manage-jobs' element={<ManageJobs/>} />
+            <Route path='view-applications' element={<ViewApplications/>} />
 
           </>:null}
           

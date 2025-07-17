@@ -47,6 +47,7 @@ const ViewApplications = () => {
     }
 
     useEffect(()=>{
+        // this will run when companytoken changes && during initial render
         if(companyToken){
             fetchCompanyJobApplications() 
         }
@@ -87,7 +88,9 @@ const ViewApplications = () => {
                                         </a>
                                     }</td>
                                     <td className='py-2 px-4 border-b relative'>
-                                        {applicant.status === 'Pending' ?
+                                        {
+                                            // group helps style a child element based on this parents's state
+                                            applicant.status === 'Pending' ?
                                             <div className='relative inline-block text-left group'>
                                             <button className='text-gray-500 action-button'>...</button>
                                             <div className='z-10 hidden absolute left-0 right-0 md:left-0 top-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow group-hover:block'>
