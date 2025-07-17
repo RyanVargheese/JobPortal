@@ -4,7 +4,7 @@ import { assets, JobCategories, JobLocations} from '../assets/assets';
 import JobCard from './JobCard';
 
 const JobListing=()=>{
-    //Insisted
+    //Declaring all the parameters for listing
     const {searchFilter,isSearched,setSearchFilter,jobs}=useContext(AppContext);
     const [showFilter,setShowFilter]=useState(false);
     const [currentPage,setCurrentPage]=useState(1);
@@ -15,6 +15,8 @@ const JobListing=()=>{
 
     const handleCategoryChange=(category)=>{
 
+        //using setter function
+        //if the category already is inclued then remove it or else add it
         setSelectedCategories(
             prev => prev.includes(category) ? prev.filter(c => c!== category) : [...prev,category]
         )
@@ -31,6 +33,8 @@ const JobListing=()=>{
 
     useEffect(()=>{
 
+        // It returns true if no categories are selected (meaning all categories match),
+        // or if the job's category is present in the `selectedCategories` array.
         const matchesCategory= (job)=> selectedCategories.length === 0 || selectedCategories.includes(job.category)
 
         const matchesLocation= (job)=> selectedLocations.length === 0 || selectedLocations.includes(job.location)
@@ -39,11 +43,14 @@ const JobListing=()=>{
 
         const matchesSearchLocation=(job)=> searchFilter.location === '' || job.location.toLowerCase().includes(searchFilter.location.toLowerCase())
 
+        // a shallow copy of the jobs array and reverses it
         const newFilteredJobs = jobs.slice().reverse().filter((job)=>{
+            // Returns true for a job if it matches ALL the defined filter criteria
             return matchesCategory(job) && matchesLocation(job) && matchesTitle(job) && matchesSearchLocation(job)
         })
 
         setFilteredJobs(newFilteredJobs);
+        // Resets the current page to 1 whenever the filters change
         setCurrentPage(1);
     },[jobs,selectedCategories,selectedLocations,searchFilter])
 

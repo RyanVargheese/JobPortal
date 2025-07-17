@@ -29,7 +29,8 @@ const Applications=()=>{
         }})
 
         if (data.success){
-            toast.success(data.message)
+            toast.success(data.message);
+            // This ensures the UI is updated with the new resume information
             await fetchUserData()
         }
         else{

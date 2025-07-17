@@ -5,12 +5,15 @@ import { Link,useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 const NavBar=()=>{
 
+    // Clerk's pre-built sign-in component/modal
     const {openSignIn}=useClerk();
+    // user contains information about the currently authenticated user (e.g., ID, name, email),
+    //only for front end purposes
     const {user}=useUser();
 
     const navigate=useNavigate();
 
-    const {setShowRecruiterLogin}=useContext(AppContext)
+    const {setShowRecruiterLogin}=useContext(AppContext);
 
     return (
         <div className='py-4 px-6 shadow mx-auto  2xl:px-20 '>

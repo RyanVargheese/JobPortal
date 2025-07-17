@@ -59,6 +59,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
 });
 
+// set up a webhook endpoint on your backend server that specifically listens for events from Clerk
 app.post('/webhooks',clerkWebHook)
 
 app.use('/api/Company',companyRoutes)

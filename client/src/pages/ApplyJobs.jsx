@@ -14,6 +14,7 @@ import { useAuth } from '@clerk/clerk-react';
 
 const ApplyJobs = () => {
 
+    // useParams() hook returns an object where the keys are the names of the URL parameters defined in your route path
     const { id } = useParams();
 
     const navigate=useNavigate();
@@ -126,7 +127,7 @@ const ApplyJobs = () => {
                         </div>
                         <div className='flex flex-col justify-center text-end text-sm max-md:mx-auto max-md:text-center'>
                             <button onClick={applyHandler} className='bg-blue-600  p-2.5 px-10 text-white rounded' >{isAlreadyApplied?'Already Applied':'Apply Now'}</button>
-                            <p className='mt-1 text-gray-600' >Posted {moment(jobData.data).fromNow()}</p>
+                            <p className='mt-1 text-gray-600' >Posted {moment(jobData.date).fromNow()}</p>
                         </div>
 
                     </div>

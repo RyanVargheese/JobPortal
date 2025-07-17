@@ -92,7 +92,7 @@ const AppContextProvider = ({ children }) => {
         }
     }
 
-    // Function to fetch User's Applied Application data
+    // Function to fetch User's Applied Applications data
     const fetchUserApplications=async ()=>{
         try {
             
