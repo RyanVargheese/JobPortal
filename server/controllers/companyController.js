@@ -12,22 +12,33 @@ export const registerCompany = async (req, res) => {
 
     const imageFile = req.file;
 
+    // if any of these parameters are missing
+    
     if (!name || !email || !password || !imageFile) {
         return res.json({ success: false, message: "Missing Details" })
     }
 
     try {
+        //email is the unique identifier
         const companyExists = await Company.findOne({ email })
+
 
         if (companyExists) {
             return res.json({ success: false, message: "Company Already Registered" })
         }
 
+        //generates a random string
         const salt = await bcrypt.genSalt(10)
+
         const hashPassword = await bcrypt.hash(password, salt)
 
         const imageUpload = await cloudinary.uploader.upload(imageFile.path)
 
+        /*
+        cloudinary.uploader.upload() is the Cloudinary SDK method used to upload files
+        from a local path to your Cloudinary cloud storage.
+        it returns a JavaScript object containing various details about the uploaded asset.Eg:Secure url
+        */
         const company = await Company.create({
             name, email, password: hashPassword, image: imageUpload.secure_url
         })
@@ -40,6 +51,7 @@ export const registerCompany = async (req, res) => {
                 email: company.email,
                 image: company.image
             },
+            // 
             token:generateToken(company._id)
         })
     }
@@ -54,8 +66,10 @@ export const loginCompany = async (req, res) => {
     const {email,password}=req.body;
 
     try{
+        // email unique identifier
         const company =await Company.findOne({email})
 
+        //returns true or false
         if(await bcrypt.compare(password,company.password)){
             res.json({success:true,
                 company: {
@@ -156,6 +170,7 @@ export const getCompanyPostedJobs = async (req, res) => {
             async (job)=>{
                 const applicants=await JobApplication.find({jobId:job._id});
                 return {...job.toObject(),applicants:applicants.length};
+                // toObject() method is a Mongoose-specific method  converts a Mongoose document into a plain JavaScript object
             }
         )
     )
@@ -194,9 +209,7 @@ export const changeJobVisibility = async (req, res) => {
 
     const job = await Job.findById(id);
 
-    console.log(job);
-    console.log(companyId);
-
+    //only the compny that owns that job can chage it
     if(companyId.toString() === job.companyId.toString()){
         job.visible=!job.visible
     }

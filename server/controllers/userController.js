@@ -6,7 +6,7 @@ import { v2 as cloudinary} from "cloudinary"
 
 //Get user Data
 export const getUserData=async (req,res)=>{
-
+//auth populated by clerk web hokk
     const userId=req.auth.userId;
 
     try{
@@ -31,6 +31,7 @@ export const ApplyForAJob=async (req,res)=>{
     const userId=req.auth.userId
 
     try {
+
         const isAlreadyApplied=await JobApplication.find({jobId,userId})
 
         if(isAlreadyApplied.length >0)

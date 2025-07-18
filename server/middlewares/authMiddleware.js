@@ -20,7 +20,7 @@ export const protectCompany =async (req,res,next)=>{
         req.company= await Company.findById(decoded.id).select('-password')
 
         //passing control
-        next()
+        next();
     }
     catch(error){
         res.json({success:false,message:error.message})

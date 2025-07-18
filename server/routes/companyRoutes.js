@@ -6,6 +6,7 @@ import { protectCompany } from '../middlewares/authMiddleware.js'
 const router=express.Router()
 
 //Register
+//image name field value will e stored in req.file
 router.post('/register',upload.single('image'),registerCompany)
 
 //Company Login
