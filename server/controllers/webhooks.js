@@ -5,12 +5,6 @@ import User from "../models/User.js";
 
 export const clerkWebHook=async (req,res)=>{
     try {
-
-        console.log("--- Webhook Request Received ---");
-        console.log("Request Headers:", req.headers);
-        console.log("Request Body:", req.body);
-        console.log("Raw Body (for verification):", req.rawBody);
-
         //Create Svik instance with clerk webhook Secret
         const whook=new Webhook(process.env.CLERK_WEBHOOK_SECRET)
 
@@ -36,7 +30,8 @@ export const clerkWebHook=async (req,res)=>{
                 }
                 console.log("User Data for Creation:", userData)
                 await User.create(userData);
-                res.json({})
+                // Send an empty JSON response with a 200 OK status to acknowledge receipt to Clerk.
+                res.json({});
                 break;
 
             }
