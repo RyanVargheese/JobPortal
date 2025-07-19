@@ -66,7 +66,7 @@ const ManageJobs=()=>{
     </div>):(
 
     
-        <div className='container p-4 max-5-5xl' >
+        <div className='container p-4 max-5-5xl text-[#50424F]' >
             <div className='overflow-x-auto' >
                 <table className='min-w-full bg-white border border-gray-200 max-sm:text-sm'>
                     <thead>

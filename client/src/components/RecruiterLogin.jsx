@@ -92,7 +92,7 @@ const RecruiterLogin = () => {
 
     return (
         <div className='absolute top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center'>
-            <form onSubmit={onSubmitHandler} className='relative bg-white p-10 rounded-xl text-slate-500'>
+            <form onSubmit={onSubmitHandler} className='relative bg-white p-10 rounded-xl text-[#B7A6B5]'>
                 <h1 className='text-center text-2xl text-neutral-700 font-medium' >
                     Recruiter {state}
                     <p className='text-sm' >Welcome Back !Please Sign In to Continue</p>
@@ -128,12 +128,12 @@ const RecruiterLogin = () => {
 
                         </>
                     }
-                    {state === 'Login' && (<p className='text-sm text-blue-600 my-4 cursor-pointer' >Forgot Password?</p>)}
-                    <button type='submit' className='bg-blue-600 w-full text-white py-2 rounded-full text-sm mt-4'>
+                    {state === 'Login' && (<p className='text-sm text-[#800080] my-4 cursor-pointer' >Forgot Password?</p>)}
+                    <button type='submit' className='bg-[#800080] w-full text-white py-2 rounded-full text-sm mt-4'>
                         {state === 'Login' ? 'Login' : isTextDataSubmitted ? 'Create account':'Next'}
                     </button>
 
-                    {state === 'Login' ? <p className='text-sm mt-5 text-center' >Don't have an Account <span className='text-blue-600 cursor-pointer' onClick={(e) => { setState("Sign Up") }} >Sign Up</span></p> : <p className='text-sm mt-5 text-center' >Already have an Account <span className='text-blue-600 cursor-pointer' onClick={(e) => { setState("Login") }} >Login</span></p>}
+                    {state === 'Login' ? <p className='text-sm mt-5 text-center' >Don't have an Account <span className='text-[#800080] cursor-pointer' onClick={(e) => { setState("Sign Up") }} >Sign Up</span></p> : <p className='text-sm mt-5 text-center' >Already have an Account <span className='text-blue-600 cursor-pointer' onClick={(e) => { setState("Login") }} >Login</span></p>}
 
                 </h1>
 

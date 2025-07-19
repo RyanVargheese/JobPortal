@@ -78,7 +78,7 @@ const ApplyJobs = () => {
     }
 
     const checkAlreadyApplied=()=>{
-        const hasApplied=userApplications.some(item => item.jobId._id === jobData._id)
+        const hasApplied=userApplications.some(item =>  item.jobId && item.jobId._id === jobData._id)
         setIsAlreadyApplied(hasApplied)
     }
 
@@ -96,9 +96,9 @@ const ApplyJobs = () => {
         <>
             <NavBar />
             {/* this div acts as container */}
-            <div className='min-h-screen flex flex-col py-10 container mx-auto px-4 2xl:px-20'>
-                <div className='bg-white text-black rounded-lg w-full' >
-                    <div className='flex justify-center  md:justify-between flex-wrap gap-8 px-14 py-20 mb-6 bg-sky-50 border border-sky-400 rounded-xl' >
+            <div className='min-h-screen flex flex-col py-10 container mx-auto px-4 2xl:px-20 text-[#50424F]'>
+                <div className='bg-white text-[#50424F] rounded-lg w-full' >
+                    <div className='flex justify-center  md:justify-between flex-wrap gap-8 px-14 py-20 mb-6 bg-[#b7a6b512] border border-[#B7A6B5] rounded-xl' >
                         <div className='flex flex-col md:flex-row items-center'>
                             <img className='h-24 bg-white rounded-lg p-4 mr-4 max-md:mb:mb-4 border' src={jobData.companyId.image} alt="" />
                             <div className='text-center md:text-left text-neutral-700' >
@@ -126,8 +126,8 @@ const ApplyJobs = () => {
                             </div>
                         </div>
                         <div className='flex flex-col justify-center text-end text-sm max-md:mx-auto max-md:text-center'>
-                            <button onClick={applyHandler} className='bg-blue-600  p-2.5 px-10 text-white rounded' >{isAlreadyApplied?'Already Applied':'Apply Now'}</button>
-                            <p className='mt-1 text-gray-600' >Posted {moment(jobData.date).fromNow()}</p>
+                            <button onClick={applyHandler} className='bg-[#800080]  p-2.5 px-10 text-white rounded' >{isAlreadyApplied?'Already Applied':'Apply Now'}</button>
+                            <p className='mt-1 text-[#50424F]' >Posted {moment(jobData.date).fromNow()}</p>
                         </div>
 
                     </div>
@@ -136,7 +136,7 @@ const ApplyJobs = () => {
                         <div className='w-full lg:w-2/3' >
                             <h2 className='font-bold text-2xl mb-4' >Job Description</h2>
                             <div className='rich-text' dangerouslySetInnerHTML={{__html:jobData.description}}></div>
-                            <button onClick={applyHandler} className='bg-blue-600  p-2.5 px-10 text-white rounded mt-10' >{isAlreadyApplied?'Already Applied':'Apply Now'}</button>
+                            <button onClick={applyHandler} className='bg-[#800080]  p-2.5 px-10 text-white rounded mt-10' >{isAlreadyApplied?'Already Applied':'Apply Now'}</button>
                         </div>
                         {/* Right section */}
                         <div className='w-full lg:w-1/3 mt-8  lg:mt-0 lg:ml-8 space-y-5' >

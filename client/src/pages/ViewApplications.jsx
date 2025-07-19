@@ -58,7 +58,7 @@ const ViewApplications = () => {
         <p className='text-xl sm:text-2xl' >No Applications Available</p>
     </div>
     ):(
-        <div className='container mx-auto p-4' >
+        <div className='container mx-auto p-4 text-[#50424F]' >
             <div>
                 <table className='w-full max-w-4xl bg-white border border-gray-200 max-sm:text-sm' >
                     <thead>

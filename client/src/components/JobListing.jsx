@@ -64,7 +64,7 @@ const JobListing=()=>{
                 {isSearched && (searchFilter.title!='' || searchFilter.location!='') && (
                     <>
                     <h3 className='font-medium text-lg mb-4'>Content Searched</h3>
-                    <div className='mb-4 text-gray-600'>
+                    <div className='mb-4 text-[#50424F]'>
                         {searchFilter.title && (
                             <span className='inline-flex items-center gap-2.5 bg-blue-50 border border-blue-200 px-4 py-1.5 rounded'>
                             {searchFilter.title}
@@ -92,10 +92,10 @@ const JobListing=()=>{
             {/* Categories */}
             <div className={`${showFilter ? "" : "max-lg:hidden"} px-6`}>
                 <h3 className='font-medium text-lg py-4'>Different Categories</h3>
-                <ul className='space-y-4 text-gray-600'>
+                <ul className='space-y-4 text-[#50424F]'>
                 {JobCategories.map((category,idx)=>{
                     return (
-                        <li key={idx} className='flex gap-3 items-center'>
+                        <li key={idx} className='flex gap-3 items-center text-[#50424F]'>
                         <input key={idx} type="checkbox" className='scale-125' name="" id="" 
                          onChange={()=>{handleCategoryChange(category)}}
                          checked={selectedCategories.includes(category)}
@@ -110,10 +110,10 @@ const JobListing=()=>{
             {/* Location */}
             <div className={`${showFilter ? "" : "max-lg:hidden"} px-6`}>
                 <h3 className='font-medium text-lg py-4'>Different Locations</h3>
-                <ul className='space-y-4 text-gray-600'>
+                <ul className='space-y-4 text-[#50424F]'>
                 {JobLocations.map((location,idx)=>{
                     return (
-                        <li key={idx} className='flex gap-3 items-center'>
+                        <li key={idx} className='flex gap-3 items-center text-[#50424F]'>
                         <input key={idx} type="checkbox" className='scale-125' name="" id="" 
                         onChange={()=>{handleLocationChange(location)}}
                          checked={selectedLocations.includes(location)}
@@ -129,9 +129,9 @@ const JobListing=()=>{
 
 
             {/* Job Listing */}
-            <section className='w-full lg:w-3/4 text-gray-800 max-lg:px-4 pt-6 max-sm:ml-2'>
+            <section className='w-full lg:w-3/4 text-[#50424F] max-lg:px-4 pt-6 max-sm:ml-2'>
                 <h3 className='font-medium text-3xl py-2' id='job-list'>Latest Jobs</h3>
-                <p className='mb-8'>Get your desired Job from top companies</p>
+                <p className='mb-8 text-[#50424F]'>Get your desired Job from top companies</p>
                 {/* Grid for Job listing */}
                 <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
                     {filteredJobs.slice((currentPage-1)*6,currentPage*6).map((job,idx)=>(

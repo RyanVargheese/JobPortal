@@ -25,7 +25,7 @@ const DashBoard=()=>{
     },[companyData])
 
     return (
-        <div className='min-h-screen'>
+        <div className='min-h-screen text-[#50424F]'>
             {/* NavBar For Recruiter */}
             <div className='shadow py-4' >
                 <div className='px-5 flex items-center justify-between' >
@@ -52,17 +52,17 @@ const DashBoard=()=>{
                 {/* Left SideBar */}
                 <div className='inline-block min-h-screen border-r-2' >
                     <ul className='flex flex-col items-start pt-5 text-gray-800' >
-                        <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-blue-500'}`} to={'/dashboard/add-job'}>
+                        <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-[#800080]'}`} to={'/dashboard/add-job'}>
                             <img className='min-w-4' src={assets.add_icon} alt="" />
                             <p className='max-sm:hidden' >Add Job</p>
                         </NavLink>
 
-                        <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-blue-500'}`} to={'/dashboard/manage-jobs'}>
+                        <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-[#800080]'}`} to={'/dashboard/manage-jobs'}>
                             <img className='min-w-4' src={assets.home_icon} alt="" />
                             <p className='max-sm:hidden' >Manage Jobs</p>
                         </NavLink>
 
-                        <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-blue-500'}`} to={'/dashboard/view-applications'}>
+                        <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-[#800080]'}`} to={'/dashboard/view-applications'}>
                             <img className='min-w-4' src={assets.person_tick_icon} alt="" />
                             <p className='max-sm:hidden' >View Applications</p>
                         </NavLink>

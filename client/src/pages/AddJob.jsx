@@ -10,7 +10,7 @@ const AddJob=()=>{
     const [title,setTitle]=useState('')
     const [location,setLocation]=useState('Banglore')
     const [category,setCategory]=useState('Programming')
-    const [level,setLevel]=useState('Beginner')
+    const [level,setLevel]=useState('Beginner Level')
     const [salary,setSalary]=useState(0)
     
     const editorRef=useRef(null)
@@ -96,7 +96,7 @@ const AddJob=()=>{
 
             <div>
                 <p className='mb-2' >Job Level</p>
-                <select className='w-full px-3 py-2 border-2 border-gray-300 rounded' onChange={e=>{setLocation(e.target.value)}}>
+                <select className='w-full px-3 py-2 border-2 border-gray-300 rounded' onChange={e=>{setLevel(e.target.value)}}>
                     <option value="Beginner Level">Beginner Level</option>
                     <option value="Intermediate Level">Intermediate Level</option>
                     <option value="Senior Level">Senior Level</option>
