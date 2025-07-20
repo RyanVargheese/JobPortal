@@ -87,7 +87,7 @@ Clerk Account: (for authentication services)
 Cloudinary Account: (for media storage)
 
 1. Clone the Repository
-git clone <repository-url> # Replace with your actual repository URL
+git clone https://github.com/RyanVargheese/JobPortal
 cd job-portal-app
 
 2. Backend Setup
