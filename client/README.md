@@ -1,177 +1,186 @@
-# Job Portal
-A full-stack job portal application designed to connect job seekers with companies. Users can browse, search, and apply for jobs, while companies can post and manage job listings and review applications.
+Insider Jobs
 
-# Features
+A modern, full-stack job portal application designed to seamlessly connect job seekers with companies, offering a streamlined experience for both parties.
+
+Why This Job Portal? (Advantages)
+This platform stands out by providing a comprehensive and user-friendly experience, addressing key needs for both job seekers and companies:
+
 For Job Seekers:
-User Authentication: Secure login and registration powered by Clerk.
 
-Job Browsing: View a comprehensive list of available job postings.
+Effortless Job Discovery: Quickly find relevant job opportunities with intuitive search, filtering by category and location, and keyword search.
 
-Advanced Search & Filtering: Filter jobs by category, location, and search by job title or location keyword.
+Streamlined Application Process: Apply directly through the platform with easy resume uploads and a clear view of application status.
 
-Detailed Job View: Access in-depth job descriptions, company details, and salary information.
+Personalized Experience: Manage your profile, track your applications, and keep your resume updated in one place.
 
-Job Application: Apply for jobs directly through the platform (requires login and resume upload).
-
-Resume Management: Upload and update your resume.
-
-Application Tracking: View the status of all your submitted job applications.
+Secure & Reliable: Built with robust authentication, ensuring your data and applications are handled securely.
 
 For Companies/Recruiters:
-Company Authentication: Secure login and registration for company accounts via Clerk.
 
-Job Posting: Easily add new job listings with rich text descriptions, salary, location, and other details.
+Simplified Job Management: Easily post, edit, and manage all your job listings from a dedicated dashboard.
 
-Job Management: Edit or delete existing job postings.
+Efficient Applicant Tracking: View all applications for your jobs in one centralized location.
 
-Applicant Management: View all applications for their posted jobs.
+Quick Status Updates: Swiftly change application statuses (e.g., Pending, Accepted, Rejected) to manage your hiring pipeline effectively.
 
-Application Status Update: Change the status of job applications (e.g., Pending, Accepted, Rejected).
+Secure Company Access: Dedicated authentication ensures only authorized personnel can manage company listings and applicants.
 
-# Tech Stack
-This project is built using the MERN stack with modern frontend tooling and authentication services.
+Tech Stack
+This project leverages the power of the MERN stack combined with modern frontend tooling and robust authentication services to deliver a fast, scalable, and secure application.
 
-# Frontend:
+Frontend:
 
-React.js: A JavaScript library for building user interfaces.
+React.js: Building dynamic and responsive user interfaces.
 
-Vite: A fast build tool for modern web projects.
+Vite: For blazing-fast development server and optimized builds.
 
-React Router DOM: For client-side routing and navigation.
+React Router DOM: Handling client-side navigation and nested routes.
 
-Tailwind CSS: A utility-first CSS framework for rapid UI development.
+Tailwind CSS: Utility-first styling for rapid and consistent UI development.
 
-Clerk: For robust user and company authentication.
+Clerk: Comprehensive user and company authentication, handling sign-up, login, and session management.
 
-Axios: Promise-based HTTP client for making API requests.
+Axios: Efficient HTTP client for seamless API communication.
 
-React Toastify: For elegant toast notifications.
+React Toastify: Providing user-friendly, non-intrusive notifications.
 
-Moment.js: For parsing, validating, manipulating, and formatting dates.
+Moment.js: For intuitive date and time formatting (e.g., "Posted 3 days ago").
 
-k-convert: For converting large numbers (e.g., salaries) into human-readable formats (e.g., "K" for thousands, "M" for millions).
+k-convert: For human-readable numerical formatting (e.g., "50K" for salaries).
 
-React Quill: A rich text editor component for job descriptions.
+React Quill: A rich text editor for detailed job descriptions.
 
-# Backend:
+Backend:
 
-Node.js: JavaScript runtime environment.
+Node.js & Express.js: Building a powerful and flexible RESTful API.
 
-Express.js: Fast, unopinionated, minimalist web framework for Node.js.
+MongoDB & Mongoose: A NoSQL database for flexible data storage and an ODM for elegant data modeling.
 
-MongoDB: A NoSQL document database.
+Clerk Webhooks: Synchronizing user data and events from Clerk to the backend database.
 
-Mongoose: An ODM (Object Data Modeling) library for MongoDB and Node.js.
+Bcrypt: For secure password hashing.
 
-Clerk Webhooks: For synchronizing user data and events from Clerk to the backend.
+JSON Web Token (JWT): For custom company/recruiter authentication and authorization.
 
-# Installation & Setup
-Follow these steps to get the project up and running on your local machine.
+Cloudinary: Cloud-based media management for storing resumes and images.
+
+Multer: Middleware for handling multipart/form-data (file uploads).
+
+Svix: For verifying the authenticity and integrity of Clerk webhooks.
+
+Sentry: For error tracking and performance monitoring.
+
+Installation & Setup (How to Use It - For Developers)
+To get a local copy of the project up and running for development or testing, follow these steps:
 
 Prerequisites
-Node.js (v18 or higher recommended)
+Ensure you have the following installed:
 
-MongoDB Atlas Account (or local MongoDB instance)
+Node.js: (v18 or higher recommended)
 
-Clerk Account
+npm: (comes with Node.js) or Yarn
 
-1. Clone the Repository (will complete soon)
+MongoDB Atlas Account: (or a local MongoDB instance running)
+
+Clerk Account: (for authentication services)
+
+Cloudinary Account: (for media storage)
+
+1. Clone the Repository
 git clone <repository-url> # Replace with your actual repository URL
 cd job-portal-app
 
 2. Backend Setup
-Navigate to the server directory:
+Navigate into the server directory, install dependencies, and configure environment variables.
 
 cd server
+npm install # or yarn install
 
-Install backend dependencies:
+Create a .env file in the server directory and populate it with your credentials:
 
-npm install
-# or
-yarn install
-
-Create a .env file in the server directory and add your environment variables:
-
-PORT=5000
+PORT=5001
 MONGO_URI=<Your_MongoDB_Connection_String>
 CLERK_SECRET_KEY=<Your_Clerk_Backend_Secret_Key>
-CLERK_WEBHOOK_SECRET=<Your_Clerk_Webhook_Secret> # Found in Clerk Dashboard -> Webhooks
+CLERK_WEBHOOK_SECRET=<Your_Clerk_Webhook_Secret_from_Dashboard>
 COMPANY_TOKEN_SECRET=<A_Strong_Random_Secret_String_For_Company_Auth>
+CLOUDINARY_NAME=<Your_Cloudinary_Cloud_Name>
+CLOUDINARY_API_KEY=<Your_Cloudinary_API_Key>
+CLOUDINARY_SECRET_KEY=<Your_Cloudinary_API_Secret>
+SENTRY_DSN=<Your_Sentry_DSN_for_Backend> # If using Sentry
 
 Start the backend server:
 
-npm start
-# or
-yarn start
+npm start # or yarn start
 
-The backend server will run on http://localhost:5001 (or your specified PORT).
+The backend API will be accessible at http://localhost:5001 (or your chosen PORT).
 
 3. Frontend Setup
-Open a new terminal and navigate to the project root (where package.json for the frontend is):
+Open a new terminal, navigate back to the project root, install dependencies, and configure environment variables.
 
 cd .. # If you are still in the 'server' directory
-
-Install frontend dependencies:
-
-npm install
-# or
-yarn install
+npm install # or yarn install
 
 Create a .env file in the project root (frontend) and add your environment variables:
 
 VITE_CLERK_PUBLISHABLE_KEY=<Your_Clerk_Frontend_Publishable_Key>
-VITE_BACKEND_URL=http://localhost:5000 # Or your deployed backend URL
+VITE_BACKEND_URL=http://localhost:5001 # Or your deployed backend URL
 
 Start the frontend development server:
 
-npm run dev
-# or
-yarn dev
+npm run dev # or yarn dev
 
-The frontend application will open in your browser, usually at http://localhost:5173.
+The frontend application will typically open in your browser at http://localhost:5173.
 
 4. Configure Clerk Webhooks
-To ensure your backend database stays in sync with Clerk's user data (e.g., when a new user signs up), you need to configure a webhook in your Clerk Dashboard:
+For user data synchronization, set up a webhook in your Clerk Dashboard:
 
-Go to your Clerk Dashboard.
-
-Navigate to "Webhooks" under "Developer tools".
+Go to your Clerk Dashboard -> Webhooks.
 
 Click "Add endpoint".
 
-Set the "Endpoint URL" to http://localhost:5000/webhooks (replace 5000 with your backend port if different).
+Set the "Endpoint URL" to http://localhost:5001/webhooks (adjust port if needed).
 
-Select the events you want to subscribe to. At a minimum, you'll likely need:
-
-user.created
-
-user.updated
-
-user.deleted
-
-(Optionally, organization.* events if you plan to use Clerk Organizations extensively)
+Subscribe to events like user.created, user.updated, user.deleted.
 
 Copy the "Webhook Secret" and add it to your backend's .env file as CLERK_WEBHOOK_SECRET.
 
-Usage
-Job Seekers:
-Browse Jobs: Visit the homepage to see all available job listings.
+Usage (How to Use It - For Users)
+For Job Seekers:
+Explore Jobs: Navigate to the homepage (/) to browse all available job listings.
 
-Search & Filter: Use the search bar and filter options to find specific jobs.
+Find Your Fit: Use the search bar to look for specific job titles or locations. Apply filters by category (e.g., "Software Development", "Marketing") to narrow down your options.
 
-Apply: Click on a job to view details. If logged in and resume is uploaded, click "Apply Now".
+View Details: Click on any job card to see a comprehensive description, salary details, and company information.
 
-Manage Applications: Go to the /applications page to see your submitted applications and their statuses.
+Apply for Jobs:
 
-Profile: Upload/update your resume on your profile page.
+Sign Up/Login: If you're new, sign up using your email/password or social accounts. If you're a returning user, simply log in.
 
-Companies/Recruiters:
-Login: Access the recruiter login/signup.
+Upload Resume: Ensure your resume is uploaded in your profile section.
 
-Dashboard: After logging in, navigate to /dashboard.
+Click the "Apply Now" button on the job details page.
 
-Add Job: Use the "Add Job" section to create new job postings.
+Track Applications: Visit the "My Applications" page (/applications) to monitor the status of all your submitted job applications (e.g., Pending, Accepted, Rejected).
 
-Manage Jobs: In "Manage Jobs," you can edit or delete your existing listings.
+For Companies/Recruiters:
+Access Recruiter Dashboard:
 
-View Applications: In "View Applications," see all applicants for your jobs and update their status (Accept/Reject).
+Sign Up/Login: Use the "Recruiter Login" option to create or access your company account.
+
+Once authenticated, you'll be redirected to the dashboard (/dashboard).
+
+Add New Jobs: Go to the "Add Job" section (/dashboard/add-job) to create new job postings for your company. Fill in all relevant details including title, description, location, and salary.
+
+Manage Existing Jobs: In the "Manage Jobs" section (/dashboard/manage-jobs), you can view all your active job postings. Here, you can:
+
+Edit: Update details of a job posting.
+
+Toggle Visibility: Make a job posting visible or invisible to job seekers.
+
+Delete: Remove a job posting.
+
+Review Applications: Visit the "View Applications" section (/dashboard/view-applications) to see all applications submitted for your company's jobs.
+
+View Resumes: Click on the "Resume" link to download or view the applicant's resume.
+
+Update Status: For each applicant, you can change their status (e.g., "Accept", "Reject") directly from the table.
